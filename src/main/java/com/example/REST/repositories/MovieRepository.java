@@ -33,6 +33,10 @@ public class MovieRepository {
     public Movie update(Movie movie, Long id) {
         Movie movieToUpdate = find(id);
 
+        if (movieToUpdate == null) {
+            return null;
+        }
+
         movieToUpdate.setTitle(movie.getTitle());
         movieToUpdate.setDirector(movie.getDirector());
         movieToUpdate.setYear(movie.getYear());

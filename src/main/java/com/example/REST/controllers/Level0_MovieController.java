@@ -46,6 +46,8 @@ public class Level0_MovieController {
                 return "OK";
             case "get":
                 return movieRepository.find().stream().map(Movie::toString).collect(Collectors.joining(" | "));
+            case "findDirectors":
+                return movieRepository.find().stream().map(Movie::getDirector).collect(Collectors.joining(" | "));
             default:
                 return "OK";
         }
