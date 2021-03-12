@@ -23,6 +23,18 @@ public class Level2_MovieController {
         return movieRepository.find();
     }
 
+    @PostMapping
+    Movie save(@RequestBody Movie movie, HttpServletResponse response) {
+        Movie savedMovie = movieRepository.save(movie);
+        if (savedMovie != null) {
+            response.setStatus(HttpStatus.CREATED.value());
+            return savedMovie;
+        } else {
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            return null;
+        }
+    }
+
     @GetMapping("{id}")
     Movie show(@PathVariable Long id, HttpServletResponse response) {
         Movie movie = movieRepository.find(id);
@@ -42,18 +54,6 @@ public class Level2_MovieController {
             return updatedMovie;
         } else {
             response.setStatus(HttpStatus.NOT_FOUND.value());
-            return null;
-        }
-    }
-
-    @PostMapping
-    Movie save(@RequestBody Movie movie, HttpServletResponse response) {
-        Movie savedMovie = movieRepository.save(movie);
-        if (savedMovie != null) {
-            response.setStatus(HttpStatus.CREATED.value());
-            return savedMovie;
-        } else {
-            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
             return null;
         }
     }
