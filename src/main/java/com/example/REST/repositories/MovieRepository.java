@@ -48,7 +48,5 @@ public class MovieRepository {
         Movie movie = find(id);
         movies.remove(movie);
     }
-
-
 }
 
