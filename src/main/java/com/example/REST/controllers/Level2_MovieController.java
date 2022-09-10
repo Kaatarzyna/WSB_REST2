@@ -18,12 +18,12 @@ public class Level2_MovieController {
         this.movieRepository = movieRepository;
     }
 
-    @GetMapping
+    @GetMapping("movies")
     List<Movie> index() {
         return movieRepository.find();
     }
 
-    @PostMapping
+    @PostMapping("movies")
     Movie save(@RequestBody Movie movie, HttpServletResponse response) {
         Movie savedMovie = movieRepository.save(movie);
         if (savedMovie != null) {
@@ -35,7 +35,7 @@ public class Level2_MovieController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("movies/{id}")
     Movie show(@PathVariable Long id, HttpServletResponse response) {
         Movie movie = movieRepository.find(id);
         if (movie != null) {
@@ -46,7 +46,7 @@ public class Level2_MovieController {
         }
     }
 
-    @PutMapping("{id}")
+    @PutMapping("movies/{id}")
     Movie update(@RequestBody Movie movie, @PathVariable Long id, HttpServletResponse response) {
         Movie updatedMovie = movieRepository.update(movie, id);
 
@@ -58,7 +58,7 @@ public class Level2_MovieController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("movies/{id}")
     String delete(@PathVariable Long id, HttpServletResponse response) {
         movieRepository.delete(id);
         response.setStatus(HttpStatus.NO_CONTENT.value());

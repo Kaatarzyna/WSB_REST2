@@ -24,7 +24,7 @@ public class Level3_MovieController {
         this.movieRepository = movieRepository;
     }
 
-    @GetMapping
+    @GetMapping("movies")
     CollectionModel<EntityModel<Movie>> index() {
 
         List<EntityModel<Movie>> movies = movieRepository.find()
@@ -37,7 +37,7 @@ public class Level3_MovieController {
                 linkTo(methodOn(Level3_MovieController.class).index()).withSelfRel());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("movies/{id}")
     ResponseEntity<?> show(@PathVariable Long id) {
 
         Movie movie = movieRepository.find(id);
@@ -53,7 +53,7 @@ public class Level3_MovieController {
         }
     }
 
-    @PutMapping("{id}")
+    @PutMapping("movies/{id}")
     ResponseEntity<?> update(@RequestBody Movie movie, @PathVariable Long id) {
         Movie updatedMovie = movieRepository.update(movie, id);
 
@@ -67,7 +67,7 @@ public class Level3_MovieController {
         }
     }
 
-    @PostMapping
+    @PostMapping("movies")
     ResponseEntity<?> save(@RequestBody Movie movie) {
         Movie savedMovie = movieRepository.save(movie);
         if (savedMovie != null) {
@@ -80,7 +80,7 @@ public class Level3_MovieController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("movies/{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
         movieRepository.delete(id);
         return ResponseEntity.noContent().build();

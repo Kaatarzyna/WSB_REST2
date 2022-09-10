@@ -20,7 +20,7 @@ public class Level0_MovieController {
         this.movieRepository = movieRepository;
     }
 
-    @PostMapping
+    @PostMapping("movieService")
     String movieService(@RequestBody JsonNode requestJson) {
 
         String method = requestJson.get("method").asText();
